@@ -5,11 +5,22 @@
 
 using namespace std;
 
-
-void add(int k, vector<int>& q);
+int parent(int i) { return i/2 - (1 - i%2); }void add(int k, vector<int>& q){
+    q.push_back(k);
+    
+    int p;
+    int i = q.size()-1;
+    while ((q[p = parent(i)] > q[i]) && (i != 0)) {
+        swap(q[i], q[p]);
+        i = p;
+    }
+    
+    
+}
+;
 int left(int i) { return 2*i + 1; }
 int right(int i) { return 2*i + 2; }
-int parent(int i) { return i/2 - (1 - i%2); }
+
 
 
 int main(void) {
@@ -35,15 +46,3 @@ int main(void) {
 }
 
 
-void add(int k, vector<int>& q) {
-    q.push_back(k);
-    
-    int p;
-    int i = q.size()-1;
-    while ((q[p = parent(i)] > q[i]) && (i != 0)) {
-        swap(q[i], q[p]);
-        i = p;
-    }
-    
-    
-}
